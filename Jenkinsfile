@@ -23,23 +23,16 @@ pipeline {
 				}
 			}
             steps {
-                sh 'mvn test'
-            }
-            post {
-                always {
+                sh 'mvn tesl
                     junit 'target/surefire-reports/*.xml'
                 }
             }
         }
-
-    }
-	stages{
-		agent any
 		stage('Deliver') { 
 			steps {
 				sh './jenkins/script/deliver.sh'
 			}
 		}
-	}
+    }
 }
 
