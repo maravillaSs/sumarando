@@ -27,8 +27,10 @@ pipeline {
         }
 		stage('Deliver') { 
 			steps {
-				sh 'chmod +x jenkins/scripts/deliver.sh'
-				sh './jenkins/scripts/deliver.sh'
+				sh 'ls -lrt'
+				sh 'ls -lrt target/*'
+//				sh 'chmod +x jenkins/scripts/deliver.sh'
+//				sh './jenkins/scripts/deliver.sh'
 			}
 		}
     }
