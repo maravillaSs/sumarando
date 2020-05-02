@@ -24,11 +24,15 @@ pipeline {
                 }
             }
         }
-        stage('Deliver') { 
-            steps {
-				sh 'chmod +x deliver.sh' 
-                sh 'sh deliver.sh' 
-            }
-        }
+
     }
+	stages{
+		stage('Deliver') { 
+			steps {
+				sh 'chmod +x deliver.sh' 
+				sh 'sh deliver.sh' 
+			}
+		}
+	}
+
 }
