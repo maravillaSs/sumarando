@@ -31,6 +31,10 @@ pipeline {
                 }
             }
         }
+
+    }
+	stages{
+		agent any
 		stage('Deliver') { 
 			steps {
 				sh 'ls -lrt'
@@ -38,6 +42,6 @@ pipeline {
 				sh 'docker -v' 
 			}
 		}
-    }
+	}
 }
 
