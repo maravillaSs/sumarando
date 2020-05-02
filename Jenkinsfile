@@ -29,6 +29,7 @@ pipeline {
 			steps {
 				sh 'ls -lrt'
 				sh 'ls -lrt target/*'
+				sh 'pwd'
 //				sh 'chmod +x jenkins/scripts/deliver.sh'
 //				sh './jenkins/scripts/deliver.sh'
 			}
