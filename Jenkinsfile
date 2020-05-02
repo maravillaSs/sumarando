@@ -25,9 +25,9 @@ pipeline {
             }
         }
 		stage('Deliver') { 
-			agent any
+			agent none
 			steps {
-					sh 'chmod +x deliver.sh' 
+				sh 'chmod +x deliver.sh' 
 				sh 'docker -v' 
 			}
 		}
