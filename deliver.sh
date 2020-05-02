@@ -1,4 +1,4 @@
-#/bin/bash!
+#!/bin/bash
 #docker stop $(docker ps -a | grep "java -jar" | awk '{print $1}')
 #docker rm $(docker ps -a | grep "java -jar" | awk '{print $1}')
 #docker build -t custom-spring .
