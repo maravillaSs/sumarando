@@ -3,4 +3,4 @@
 #docker rm $(docker ps -a | grep "java -jar" | awk '{print $1}')
 #docker build -t custom-spring .
 #docker run -p 8081:8080 --link=some-mysql -t custom-spring
-echo $(sudo docker ps -a | grep "mysql" | awk '{print $1}')
+echo $(docker ps -a | grep "mysql" | awk '{print $1}')
