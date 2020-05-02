@@ -37,9 +37,7 @@ pipeline {
 		agent any
 		stage('Deliver') { 
 			steps {
-				sh 'ls -lrt'
-				sh 'pwd'
-				sh 'docker -v' 
+				sh './jenkins/script/deliver.sh'
 			}
 		}
 	}
