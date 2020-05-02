@@ -25,11 +25,23 @@ pipeline {
                 }
             }
         }
-        stage('Deliver') { 
-            steps {
-				sh 'chmod +x deliver.sh' 
-                sh 'docker -v' 
-            }
-        }
+//       stage('Deliver') { 
+//           steps {
+//				sh 'chmod +x deliver.sh' 
+//               sh 'docker -v' 
+//           }
+//       }
     }
+}
+
+pipeline {
+   agent any
+
+   stages {
+      stage('Deliver') {
+         steps {
+            sh 'docker -v'
+         }
+      }
+   }
 }
