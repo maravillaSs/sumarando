@@ -3,6 +3,7 @@ pipeline {
         docker {
             image 'maven:3-alpine'
             args '-v /root/.m2:/root/.m2'
+			label 'docker' 
         }
     }
     options {
@@ -27,7 +28,7 @@ pipeline {
         stage('Deliver') { 
             steps {
 				sh 'chmod +x deliver.sh' 
-                sh './deliver.sh' 
+                sh 'docker -v' 
             }
         }
     }
