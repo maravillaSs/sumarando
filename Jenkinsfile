@@ -33,7 +33,8 @@ pipeline {
         }
 		stage('Deliver') { 
 			steps {
-				sh 'chmod +x deliver.sh' 
+				sh 'ls -lrt'
+				sh 'pwd'
 				sh 'docker -v' 
 			}
 		}
