@@ -1,0 +1,5 @@
+com\example\accessingdatamysql\AccessingDataMysqlApplication.class
+com\example\accessingdatamysql\MainController.class
+com\example\accessingdatamysql\Operaciones.class
+com\example\accessingdatamysql\Suma.class
+com\example\accessingdatamysql\SumaRepository.class
