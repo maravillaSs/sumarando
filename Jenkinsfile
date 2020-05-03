@@ -16,11 +16,11 @@ pipeline {
         NEXUS_CREDENTIAL_ID = "nexus-credentials"
     }
     stages {
-		stage('SonarQube analysis') {
-			withSonarQubeEnv('My SonarQube Server') {
-			sh 'mvn clean package sonar:sonar'
-			} // submitted SonarQube taskId is automatically attached to the pipeline context
-		}
+        stage('SonarQube analysis 1') {
+            steps {
+                sh 'mvn clean package sonar:sonar'
+            }
+        }
         stage('Build') {
 			agent {
 				docker {
