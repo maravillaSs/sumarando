@@ -16,9 +16,14 @@ pipeline {
         NEXUS_CREDENTIAL_ID = "nexus-credentials"
     }
     stages {
-        stage('SonarQube analysis 1') {
+        stage('SonarQube analysis ') {
             steps {
                 sh 'mvn clean package sonar:sonar'
+            }
+        }
+        stage("Quality Gate") {
+            steps {
+                waitForQualityGate abortPipeline: true
             }
         }
         stage('Build') {
