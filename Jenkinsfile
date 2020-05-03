@@ -16,34 +16,22 @@ pipeline {
         NEXUS_CREDENTIAL_ID = "nexus-credentials"
     }
     stages {
-        stage('build && SonarQube analysis') {
+        stage('SonarQube analysis ') {
             steps {
-                withSonarQubeEnv('Sonarservr') {
-                    // Optionally use a Maven environment you've configured already
-					sh 'mvn clean package sonar:sonar'
-                }
+                sh 'mvn sonar:sonar'
             }
         }
-        stage("Quality Gate") {
+        stage('Build') {
+			agent {
+				docker {
+					image 'maven:3-alpine'
+					args '-v /root/.m2:/root/.m2'
+				}
+			}
             steps {
-                timeout(time: 1, unit: 'HOURS') {
-                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
-                    // true = set pipeline to UNSTABLE, false = don't
-                    waitForQualityGate abortPipeline: true
-                }
+                sh 'mvn -B -DskipTests clean package'
             }
         }
-//        stage('Build') {
-//			agent {
-//				docker {
-//					image 'maven:3-alpine'
-//					args '-v /root/.m2:/root/.m2'
-//				}
-//			}
-//            steps {
-//                sh 'mvn -B -DskipTests clean package'
-//            }
-//        }
 		
         stage('Test') {
             steps {
