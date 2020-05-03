@@ -21,6 +21,11 @@ pipeline {
                 sh 'mvn clean package sonar:sonar'
             }
         }
+        stage("Quality Gate") {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+        }
         stage('Build') {
 			agent {
 				docker {
