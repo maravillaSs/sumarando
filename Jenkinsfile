@@ -16,6 +16,11 @@ pipeline {
         NEXUS_CREDENTIAL_ID = "nexus-credentials"
     }
     stages {
+		stage('SonarQube analysis') {
+			withSonarQubeEnv('My SonarQube Server') {
+			sh 'mvn clean package sonar:sonar'
+			} // submitted SonarQube taskId is automatically attached to the pipeline context
+		}
         stage('Build') {
 			agent {
 				docker {
@@ -27,7 +32,7 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
-
+		
         stage('Test') {
             steps {
                 sh 'mvn test'
@@ -38,13 +43,6 @@ pipeline {
                 }
             }
         }
-		stage('Deliver') { 
-			steps {
-				sh 'pwd'
-				sh 'chmod +x jenkins/scripts/deliver.sh'
-				sh './jenkins/scripts/deliver.sh'
-			}
-		}
         stage("publish to nexus") {
             steps {
                 script {
@@ -87,6 +85,14 @@ pipeline {
                 }
             }
         }
+		stage('Deliver') { 
+			steps {
+				sh 'pwd'
+				sh 'chmod +x jenkins/scripts/deliver.sh'
+				sh './jenkins/scripts/deliver.sh'
+			}
+		}
+
     }
 }
 
