@@ -94,5 +94,10 @@ pipeline {
 		}
 
     }
+    post { 
+        always { 
+            slackSend color: 'good', message: 'Message from Jenkins Pipeline'
+        }
+    }
 }
 
